@@ -10,5 +10,6 @@ namespace ArabaSatis.Models
         [Required (ErrorMessage ="Marka Adını Girin:")]
         [DisplayName("Marka Adı")]
         public string MarkaAd { get; set; }
+        public virtual ICollection<SeriModel>? SeriModels { get; set; }  
     }
 }

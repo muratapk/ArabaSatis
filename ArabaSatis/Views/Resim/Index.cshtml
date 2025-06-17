@@ -1,0 +1,33 @@
+﻿@model List<ArabaSatis.Models.ArabaResim>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+<a asp-action="Create">Yeni</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>İlan Numarası</th>
+            <th>Resim</th>
+            <th>Düzelt</th>
+            <th>Silme</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+
+       
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ilanId)</td>
+                
+            <td>@Html.DisplayFor(modelItem=>item.Resim)</td>
+            <td><a asp-action="Edit" asp-route-id="@item.ArabaResimId">Düzelt</a></td>
+            <td><a asp-action="Delete" asp-route-id="@item.ArabaResimId">Silme</a></td>
+        </tr>
+        }
+    </tbody>
+
+</table>

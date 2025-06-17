@@ -4,6 +4,7 @@ using ArabaSatis.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArabaSatis.Migrations
 {
     [DbContext(typeof(ArabamDbContext))]
-    partial class ArabamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250613164053_sonuc")]
+    partial class sonuc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,25 +24,6 @@ namespace ArabaSatis.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ArabaSatis.Models.ArabaResim", b =>
-                {
-                    b.Property<int>("ArabaResimId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ArabaResimId"));
-
-                    b.Property<string>("Resim")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("ilanId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ArabaResimId");
-
-                    b.ToTable("ArabaResim");
-                });
 
             modelBuilder.Entity("ArabaSatis.Models.Markalar", b =>
                 {

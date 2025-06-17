@@ -10,5 +10,7 @@ namespace ArabaSatis.Data
         }
         public DbSet<Markalar>?Markalars { get; set; }
         public DbSet<Yakit>? Yakits { get; set; }
+        public DbSet<SeriModel>? SeriModels { get; set;}
+        public DbSet<ArabaResim>? ArabaResim { get; set; }
     }
 }
