@@ -4,6 +4,7 @@ using ArabaSatis.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArabaSatis.Migrations
 {
     [DbContext(typeof(ArabamDbContext))]
-    partial class ArabamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250619165502_ilanlarpaket")]
+    partial class ilanlarpaket
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

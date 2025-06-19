@@ -4,6 +4,7 @@ using ArabaSatis.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArabaSatis.Migrations
 {
     [DbContext(typeof(ArabamDbContext))]
-    partial class ArabamDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250617162438_yorumlar")]
+    partial class yorumlar
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,46 +42,6 @@ namespace ArabaSatis.Migrations
                     b.HasKey("ArabaResimId");
 
                     b.ToTable("ArabaResim");
-                });
-
-            modelBuilder.Entity("ArabaSatis.Models.Ilanlar", b =>
-                {
-                    b.Property<int>("IlanId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IlanId"));
-
-                    b.Property<string>("AracDurumu")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IlanAdi")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Kilometre")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MarkaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("MarkalarMarkaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("YakitId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Yil")
-                        .HasColumnType("int");
-
-                    b.HasKey("IlanId");
-
-                    b.HasIndex("MarkalarMarkaId");
-
-                    b.HasIndex("YakitId");
-
-                    b.ToTable("Ilanlars");
                 });
 
             modelBuilder.Entity("ArabaSatis.Models.Markalar", b =>
@@ -153,7 +116,6 @@ namespace ArabaSatis.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("YorumId"));
 
                     b.Property<string>("AdSoyad")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Yorum")
@@ -168,23 +130,6 @@ namespace ArabaSatis.Migrations
                     b.ToTable("Yorumlars");
                 });
 
-            modelBuilder.Entity("ArabaSatis.Models.Ilanlar", b =>
-                {
-                    b.HasOne("ArabaSatis.Models.Markalar", "Markalar")
-                        .WithMany("Ilanlars")
-                        .HasForeignKey("MarkalarMarkaId");
-
-                    b.HasOne("ArabaSatis.Models.Yakit", "Yakit")
-                        .WithMany("Ilanlar")
-                        .HasForeignKey("YakitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Markalar");
-
-                    b.Navigation("Yakit");
-                });
-
             modelBuilder.Entity("ArabaSatis.Models.SeriModel", b =>
                 {
                     b.HasOne("ArabaSatis.Models.Markalar", "Markalars")
@@ -196,14 +141,7 @@ namespace ArabaSatis.Migrations
 
             modelBuilder.Entity("ArabaSatis.Models.Markalar", b =>
                 {
-                    b.Navigation("Ilanlars");
-
                     b.Navigation("SeriModels");
-                });
-
-            modelBuilder.Entity("ArabaSatis.Models.Yakit", b =>
-                {
-                    b.Navigation("Ilanlar");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,5 +11,6 @@ namespace ArabaSatis.Models
         [DisplayName("Marka Adı")]
         public string MarkaAd { get; set; }
         public virtual ICollection<SeriModel>? SeriModels { get; set; }  
+        public virtual ICollection<Ilanlar>? Ilanlars { get; set; }
     }
 }
