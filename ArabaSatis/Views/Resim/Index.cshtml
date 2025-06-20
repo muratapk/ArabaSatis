@@ -23,7 +23,10 @@
         <tr>
             <td>@Html.DisplayFor(modelItem => item.ilanId)</td>
                 
-            <td>@Html.DisplayFor(modelItem=>item.Resim)</td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.Resim)
+                <img src="/ArabaResim/@item.Resim" height="100px" width="100px"/>
+            </td>
             <td><a asp-action="Edit" asp-route-id="@item.ArabaResimId">Düzelt</a></td>
             <td><a asp-action="Delete" asp-route-id="@item.ArabaResimId">Silme</a></td>
         </tr>

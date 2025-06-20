@@ -11,16 +11,17 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create" >
+        <form asp-action="Create" enctype="multipart/form-data" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ilanId" class="control-label"></label>
-                <input asp-for="ilanId" class="form-control" />
+                <select asp-for="ilanId" class="form-control" asp-items="ViewBag.ilanListe"></select>
                 <span asp-validation-for="ilanId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Resim" class="control-label"></label>
-                <input asp-for="Resim" class="form-control" />
+                
+                <input asp-for="Picture" type="file" class="form-control"/>
                 <span asp-validation-for="Resim" class="text-danger"></span>
             </div>
             <div class="form-group">
