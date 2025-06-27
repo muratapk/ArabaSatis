@@ -1,0 +1,38 @@
+.trink{
+    border-radius: 10px;
+    
+}
+.sbuyuk
+{
+    max-width: 100%;
+    height: 80vh;
+}
+.sbuyuk img{
+    width: 100%;
+    height: 80vh;
+}
+.skucuk
+{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.skucuk .kutu{
+    width: 8vw;
+    height: 12vh;
+    border:1px solid gainsboro;
+    border-radius: 5px;
+    margin-top:3px;
+    margin-bottom:3px;
+    margin-left:5px;
+    margin-right:5px;
+}
+.skucuk .kutu img{
+    width: 8vw;
+    height: 12vh;
+}
+.fiyat{
+    color:red;
+    font-size:1.2rem;
+}
