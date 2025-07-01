@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ArabaSatis.Component
 {
     
-    public class VitrinListe:ViewComponent
+    public class VitrinListe: ViewComponent
     {
         private readonly ArabamDbContext _context;
 
@@ -15,7 +15,8 @@ namespace ArabaSatis.Component
         }
         public IViewComponentResult Invoke()
         {
-            var sorgu = _context.Ilanlars.ToList();
+            var sorgu = _context.Ilanlars.Include(x => x.Yakit)
+    .Include(x => x.Markalar).ToList();
             return View(sorgu);
         }
     }
