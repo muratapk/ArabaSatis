@@ -13,7 +13,7 @@ namespace ArabaSatis.Models
         public int ? Kilometre { get; set; }
         [ForeignKey("YakitId")]
         public int ? YakitId { get; set; }
-        public Yakit Yakit { get; set; }
+        public Yakit? Yakit { get; set; }
 
         [ForeignKey("MarkaId")]
         public int ? MarkaId { get; set; }

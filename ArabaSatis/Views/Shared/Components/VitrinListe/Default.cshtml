@@ -10,11 +10,11 @@
                 @foreach(var item in Model)
         {
             <div class="card mb-3" style="width: 18rem;">
-                <img src="banner.png" class="card-img-top" alt="...">
+                <img src="banner.png" class="card-img-top" alt="@item.IlanAdi">
                 <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <h5 class="card-title">@item.IlanAdi</h5>
+                    <p class="card-text">@item.AracDurumu</p>
+                    <a asp-controller="Home" asp-action="ilanDetay" asp-route-id="@item.IlanId" class="btn btn-primary">Detay Git</a>
                 </div>
             </div>
 

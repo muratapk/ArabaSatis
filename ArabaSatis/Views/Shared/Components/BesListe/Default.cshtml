@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ArabaSatis.Models.Ilanlar>
+
+<div class="row">
+    @foreach(var item in Model)
+    {
+        <div class="col col-sm-2   border rounded">
+            <h5>@item.IlanAdi</h5>
+            <p>@item.AracDurumu</p>
+        </div>
+    }
+  
+    
+   
+   
+   
+</div>

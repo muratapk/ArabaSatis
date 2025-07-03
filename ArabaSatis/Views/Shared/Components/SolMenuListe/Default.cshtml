@@ -1,0 +1,44 @@
+﻿@model IEnumerable<ArabaSatis.Models.Markalar>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="kutu">
+                <ul>
+                    <li class="list-group-item"><a href=""><h6>Son 24 Saat/48 Saat</h6></a></li>
+                    <li class="list-group-item"><a href=""><h6>Acil İlanlar</h6></a></li>
+                    <li class="list-group-item"><a href=""><h6>Fiyatı Düşenler</a></li>
+
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="list-group list-group-flush">
+                        @foreach(var item in Model)
+                        {
+                            <li class="list-group-item">
+                                <a asp-controller="Kategoriler" asp-action="KategoriListesi" asp-route-id="@item.MarkaId">@item.MarkaAd</a>
+                                
+                            </li>
+                        }
+
+                        
+
+
+                       
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-12">
+                    <img src="banner.png" class="img-fluid" alt="">
+                </div>
+            </div>
+
+            
+            @await Component.InvokeAsync("BesListe");
+        </div>
+    </div>
+</div>

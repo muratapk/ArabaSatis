@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArabaSatis.Migrations
 {
     [DbContext(typeof(ArabamDbContext))]
-    [Migration("20250619165502_ilanlarpaket")]
-    partial class ilanlarpaket
+    [Migration("20250701163437_paket")]
+    partial class paket
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,19 +60,19 @@ namespace ArabaSatis.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Kilometre")
+                    b.Property<int?>("Kilometre")
                         .HasColumnType("int");
 
-                    b.Property<int>("MarkaId")
+                    b.Property<int?>("MarkaId")
                         .HasColumnType("int");
 
                     b.Property<int?>("MarkalarMarkaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("YakitId")
+                    b.Property<int?>("YakitId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Yil")
+                    b.Property<int?>("Yil")
                         .HasColumnType("int");
 
                     b.HasKey("IlanId");
@@ -179,9 +179,7 @@ namespace ArabaSatis.Migrations
 
                     b.HasOne("ArabaSatis.Models.Yakit", "Yakit")
                         .WithMany("Ilanlar")
-                        .HasForeignKey("YakitId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("YakitId");
 
                     b.Navigation("Markalar");
 

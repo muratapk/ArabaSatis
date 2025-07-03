@@ -32,7 +32,55 @@ namespace ArabaSatis.Controllers
         {
             return View();
         }
+        //GET :Resim Ekle
+        [HttpGet]
+        public IActionResult ResimEkle(int id)
+        { ViewBag.IlanId = id;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ResimEkle(ArabaResim gelen,IFormFile picture)
+        {
+            long resimboyut = 5 * 1024 * 1024;
+            if (Picture != null || Picture.Length > 0)
+            {
+                var allowType = new[] { "image/jpeg", "image/png", "image/jpg", "image/gif" };
+                if (!allowType.Contains(Picture.ContentType))
+                {
+                    return BadRequest("Hatalı Dosya Tipi jpg,gif,png,jpeg olacak");
+                }
+                if (Picture.Length > resimboyut)
+                {
+                    return BadRequest("5MB Büyük Olamaz");
+                }
 
+
+                var uzanti = Path.GetExtension(Picture.FileName).ToLower();
+                string isim = Guid.NewGuid().ToString() + uzanti;
+                string yol = Path.Combine(Directory.GetCurrentDirectory() + "/wwwroot/ArabaResim/" + isim);
+                using (var stream = new FileStream(yol, FileMode.Create))
+                {
+                    Picture.CopyTo(stream);
+                }
+                gelen.Resim = isim;
+            }
+
+
+
+
+            try
+            {
+
+                _context.ArabaResim.Add(gelen);
+                _context.SaveChanges();
+                return RedirectToAction("Index","Ilanlars");
+            }
+            catch
+            {
+               
+                return View();
+            }
+        }
         // GET: ResimController/Create
         public ActionResult Create()
         {
