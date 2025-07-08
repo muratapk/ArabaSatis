@@ -10,7 +10,22 @@
                 @foreach(var item in Model)
         {
             <div class="card mb-3" style="width: 18rem;">
-                <img src="banner.png" class="card-img-top" alt="@item.IlanAdi">
+                @{
+                    var resim = item.ArabaResimler.FirstOrDefault();
+                    var rest = string.Empty;
+                    if (resim != null)
+                    {
+                       rest = resim.Resim;
+                    }
+                    else
+                    {
+                       rest = "default.jpeg"; // Varsayılan resim
+                    }
+                }
+
+               
+               
+                <img src="/ArabaResim/@rest" class="card-img-top" />
                 <div class="card-body">
                     <h5 class="card-title">@item.IlanAdi</h5>
                     <p class="card-text">@item.AracDurumu</p>

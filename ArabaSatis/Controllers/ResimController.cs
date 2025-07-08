@@ -3,7 +3,7 @@ using ArabaSatis.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.Operations;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace ArabaSatis.Controllers
@@ -32,6 +32,23 @@ namespace ArabaSatis.Controllers
         {
             return View();
         }
+        //GET
+        public IActionResult ResimGoster(int ? id)
+        {
+            if(id == null   )
+            {
+                return NotFound();
+            }
+            var resim = _context.ArabaResim.Where(x => x.ilanId == id).ToList();
+            if (resim == null || resim.Count == 0)
+            {
+                return NotFound();
+            }
+            return View(resim);
+        }
+
+
+
         //GET :Resim Ekle
         [HttpGet]
         public IActionResult ResimEkle(int id)
@@ -39,7 +56,7 @@ namespace ArabaSatis.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult ResimEkle(ArabaResim gelen,IFormFile picture)
+        public IActionResult ResimEkle(ArabaResim gelen,IFormFile Picture)
         {
             long resimboyut = 5 * 1024 * 1024;
             if (Picture != null || Picture.Length > 0)

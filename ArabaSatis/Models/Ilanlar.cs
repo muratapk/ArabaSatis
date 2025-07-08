@@ -18,6 +18,6 @@ namespace ArabaSatis.Models
         [ForeignKey("MarkaId")]
         public int ? MarkaId { get; set; }
         public Markalar? Markalar { get; set; }
-
+        public ICollection<ArabaResim> ArabaResimler { get; set; } = new List<ArabaResim>();    
     }
 }

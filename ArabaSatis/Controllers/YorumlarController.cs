@@ -1,7 +1,7 @@
 ﻿using ArabaSatis.Data;
 using ArabaSatis.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Build.Framework;
+
 
 namespace ArabaSatis.Controllers
 {

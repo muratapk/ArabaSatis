@@ -1,9 +1,11 @@
 ﻿using ArabaSatis.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+
 
 namespace ArabaSatis.Data
 {
-    public class ArabamDbContext : DbContext
+    public class ArabamDbContext :IdentityDbContext<AppUser,AppRole,int>
     {
         public ArabamDbContext(DbContextOptions<ArabamDbContext>options):base(options)
         {

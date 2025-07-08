@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ArabaSatis.Models.ArabaResim>
+
+@{
+    ViewData["Title"] = "ResimGoster";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>ResimGoster</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ilanId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resim)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ilanId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resim)
+                    <img src="~/ArabaResim/@item.Resim" height="100px" width="100px" alt="Araba Resmi" />
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ArabaResimId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ArabaResimId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ArabaResimId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
