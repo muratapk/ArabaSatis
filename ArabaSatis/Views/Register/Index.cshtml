@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@model ArabaSatis.Dto.AppUserDtoRegister
+<!doctype html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
@@ -16,19 +17,31 @@
 						<h3 class="panel-title">Login via site</h3>
 					</div>
 					<div class="panel-body">
-						<form accept-charset="UTF-8" role="form">
+						<form accept-charset="UTF-8" method="post" role="form" asp-action="Index" asp-controller="Register">
 							<fieldset>
 								<div class="form-group">
-									<input class="form-control" placeholder="yourmail@example.com" name="email" type="text">
+									<input class="form-control" placeholder="Adınızı Girin" asp-for="FirstName" name="FirstName" type="text">
 								</div>
 								<div class="form-group">
-									<input class="form-control" placeholder="Password" name="password" type="password" value="">
+									<input class="form-control" placeholder="Soyadınızı Girin" asp-for="LastName" name="LastName" type="text">
 								</div>
-								<div class="checkbox">
-									<label>
-										<input name="remember" type="checkbox" value="Remember Me"> Remember Me
-									</label>
+								<div class="form-group">
+									<input class="form-control" placeholder="Şehrinizi Girin" asp-for="City" name="City" type="text">
 								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Kullanıcı Adı Girin" asp-for="UserName" name="UserName" type="text">
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Email Adresiniz" asp-for="Email" name="email" type="text">
+								</div>
+								<div class="form-group">
+									<input class="form-control" placeholder="Şifre" asp-for="Password" name="password" type="password" value="">
+								</div>
+
+								<div class="form-group">
+									<input class="form-control" placeholder="Şifre Tekrar"  asp-for="ConfirmPassword" name="password" type="password" value="">
+								</div>
+								
 								<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
 							</fieldset>
 						</form>
