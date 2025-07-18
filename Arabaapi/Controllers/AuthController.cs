@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Arabaapi.Models;
 using System.Text;
+using Arabaapi.Data;
 
 namespace Arabaapi.Controllers
 {
@@ -13,9 +14,11 @@ namespace Arabaapi.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        public AuthController(IConfiguration configuration)
+        private readonly AppDataDbContext _context;
+        public AuthController(IConfiguration configuration,AppDataDbContext context)
         {
             _configuration = configuration;
+            _context = context;
         }
 
         [HttpPost("login")]
