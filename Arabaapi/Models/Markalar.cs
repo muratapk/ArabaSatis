@@ -7,8 +7,7 @@ namespace Arabaapi.Models
     {
         [Key]
         public int  MarkaId { get; set; }
-        [Required(ErrorMessage = "Marka Adını Girin:")]
-        [DisplayName("Marka Adı")]
+        
         public string  MarkaAd { get; set; } = string.Empty;
     }
 }

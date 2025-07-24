@@ -7,10 +7,12 @@ namespace ArabaSatis.Models
     {
         [Key]
         public int MarkaId { get; set; }
-        [Required (ErrorMessage ="Marka Adını Girin:")]
+        [Required(ErrorMessage = "Marka Adını Girin:")]
         [DisplayName("Marka Adı")]
-        public string MarkaAd { get; set; }
+        public string MarkaAd { get; set; } = string.Empty;
         public virtual ICollection<SeriModel>? SeriModels { get; set; }  
         public virtual ICollection<Ilanlar>? Ilanlars { get; set; }
+
+        
     }
 }

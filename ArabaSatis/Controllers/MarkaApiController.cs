@@ -1,12 +1,13 @@
 ﻿using ArabaSatis.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.CompilerServices;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 namespace ArabaSatis.Controllers
 {
     public class MarkaApiController : Controller
     {
-        Uri baseAddress = new Uri("https://localhost:44300/api/Markalar");
+        Uri baseAddress = new Uri("https://localhost:7221/api/Markalar");
         private readonly HttpClient _httpClient;
         public MarkaApiController()
         {
@@ -22,8 +23,15 @@ namespace ArabaSatis.Controllers
                string jsonData = response.Content.ReadAsStringAsync().Result;
                 if (!string.IsNullOrEmpty(jsonData))
                 {
+                    var options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
 
-                 markalars = System.Text.Json.JsonSerializer.Deserialize<List<Markalar>>(jsonData);
+                    markalars = System.Text.Json.JsonSerializer.Deserialize<List<Markalar>>(jsonData, options);
+
+
+
                     return View(markalars);
 
                 }
