@@ -20,7 +20,7 @@ namespace ArabaSatis.Controllers
             HttpResponseMessage response = _httpClient.GetAsync("Markalar").Result;
             if (response.IsSuccessStatusCode)
             {
-               string jsonData = response.Content.ReadAsStringAsync().Result;
+                string jsonData = response.Content.ReadAsStringAsync().Result;
                 if (!string.IsNullOrEmpty(jsonData))
                 {
                     var options = new JsonSerializerOptions
@@ -91,12 +91,16 @@ namespace ArabaSatis.Controllers
             {
                 Markalar markalar = new Markalar();
                 HttpResponseMessage response = _httpClient.GetAsync($"Markalar/{id}").Result;
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     string jsonData = response.Content.ReadAsStringAsync().Result;
                     if (!string.IsNullOrEmpty(jsonData))
                     {
-                        markalar = System.Text.Json.JsonSerializer.Deserialize<Markalar>(jsonData);
+                        var options = new JsonSerializerOptions
+                        {
+                            PropertyNameCaseInsensitive = true
+                        };
+                        markalar = System.Text.Json.JsonSerializer.Deserialize<Markalar>(jsonData, options);
                         return View(markalar);
                     }
                     else
@@ -110,7 +114,7 @@ namespace ArabaSatis.Controllers
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = "Marka bulunamadı: " + ex.Message;
                 return RedirectToAction("Index");
@@ -118,8 +122,21 @@ namespace ArabaSatis.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Edit(Markalar marka)
+        public IActionResult Edit(Markalar marka,int id)
         {
+            if(id != marka.MarkaId)
+            {
+                return BadRequest("Marka ID'si uyuşmuyor.");
+            }
+            HttpResponseMessage response = _httpClient.PutAsJsonAsync($"Markalar/{id}", marka).Result;
+            if(response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Marka güncellenirken bir hata oluştu.";
+            }
             return View();
         }
     }

@@ -48,8 +48,19 @@ namespace Arabaapi.Controllers
             _context.SaveChanges();
             return Ok("Marka başarıyla silindi.");
         }
-        [HttpPut]
-        public IActionResult Update(Markalar gelen)
+
+        [HttpGet("{id}")]
+        public IActionResult GetId(int id)
+        {
+            var marka = _context.Markalars.Find(id);
+            if(marka == null)
+            {
+                return NotFound("Marka bulunamadı.");
+            }
+            return Ok(marka);
+        }
+        [HttpPut("{id}")]
+        public IActionResult Update(Markalar gelen,int id)
         {
             var result = _context.Markalars.Find(gelen.MarkaId);
             if (result == null)
